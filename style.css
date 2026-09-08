@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1, h2, h3 {
+    font-family: 'Press Start 2p', monospace;
+}
+
+p, ul, li ,span {
+    font-family: 'VT323', monospace;
+}
