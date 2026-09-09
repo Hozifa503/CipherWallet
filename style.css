@@ -6,8 +6,36 @@
 
 h1, h2, h3 {
     font-family: 'Press Start 2p', monospace;
+    color: #ff003c;
 }
 
 p, ul, li ,span {
     font-family: 'VT323', monospace;
+}
+
+body {
+    font-family: 'VT323', monospace;
+    background-color: lightgray;
+    color: #e6edf3;
+    line-height: 1.5;
+}
+
+.header {
+    background-color: black;
+    padding: 1.5rem 2rem;
+    border-bottom: 2px solid #d40303;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.header-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
 }
