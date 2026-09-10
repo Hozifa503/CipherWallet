@@ -6,7 +6,7 @@
 
 h1, h2, h3 {
     font-family: 'Press Start 2p', monospace;
-    color: #ff003c;
+    color: #ff0000;
 }
 
 p, ul, li ,span {
@@ -15,15 +15,15 @@ p, ul, li ,span {
 
 body {
     font-family: 'VT323', monospace;
-    background-color: lightgray;
-    color: #e6edf3;
+    background-color: black;
+    color: white;
     line-height: 1.5;
 }
 
 .header {
-    background-color: black;
+    background-color: #0a0000;
     padding: 1.5rem 2rem;
-    border-bottom: 2px solid #d40303;
+    border-bottom: 2px solid #ff0000;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -38,4 +38,37 @@ body {
     display: flex;
     gap: 1rem;
     align-items: center;
+}
+
+.dropdown {
+    position: relative;
+    background: black;
+    border: 1px solid lightcoral;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.date-picker {
+    background: black;
+    border: 1px solid lightcoral;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.export-btn {
+    background: #ff003c;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
