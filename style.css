@@ -6,7 +6,7 @@
 
 h1, h2, h3 {
     font-family: 'Press Start 2p', monospace;
-    color: #ff0000;
+    color: firebrick;
 }
 
 p, ul, li ,span {
@@ -15,15 +15,14 @@ p, ul, li ,span {
 
 body {
     font-family: 'VT323', monospace;
-    background-color: #180000;
-    color: white;
     line-height: 1.5;
+    background-color: whitesmoke;
 }
 
 .header {
-    background-color: black;
+    background-color: white;
     padding: 1.5rem 2rem;
-    border-bottom: 2px solid #ff0000;
+    border-bottom: 2px solid #180000;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,8 +41,8 @@ body {
 
 .dropdown {
     position: relative;
-    background: black;
-    border: 1px solid lightcoral;
+    background: white;
+    border: 1px solid #180000;
     border-radius: 8px;
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
@@ -51,8 +50,8 @@ body {
 }
 
 .date-picker {
-    background: black;
-    border: 1px solid lightcoral;
+    background: white;
+    border: 1px solid #180000;
     border-radius: 8px;
     padding: 0.5rem 1rem;
     font-size: 0.875rem;
@@ -62,7 +61,7 @@ body {
 }
 
 .export-btn {
-    background: firebrick;
+    background: linear-gradient(135deg, lightcoral 0%, #180000 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -87,7 +86,7 @@ body {
 }
 
 .card {
-    background: coral;
+    background: white;
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -115,7 +114,7 @@ body {
 }
 
 .amount {
-    color: #180000;
+    color: black;
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
@@ -124,8 +123,95 @@ body {
 
 .change {
     font-size: 0.875rem;
-    color: brown;
+    color: lightcoral;
     align-items: center;
     gap: 0.25rem;
     display: flex;
+}
+
+.my-card {
+    background: linear-gradient(135deg, lightcoral 0%, #180000 100%);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-chip {
+    width: 32px;
+    height: 24px;
+    background: coral;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.card-chip::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    background: #a00000;
+    border-radius: 2px;
+}
+
+.card-number {
+    font-size: 1.25rem;
+    letter-spacing: 0.1rem;
+    margin-bottom: 1rem;
+    font-family: 'VT323', monospace;
+}
+
+.card-logo {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: -8px;
+}
+
+.card-logo-circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.logo-red {
+    background: #ef4444;
+}
+
+.logo-orange {
+    background: #f59e0b;
+    margin-left: -8px;
+}
+
+.spending-section {
+    margin-top: 2rem;
+}
+
+.spending-limit {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #180000;
+}
+
+.spending-used {
+    font-size: 1rem;
+    color: coral;
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+    height: 6px;
+    background: white;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #ea580c;
+    width: 63%;
+    border-radius: 3px;
 }
