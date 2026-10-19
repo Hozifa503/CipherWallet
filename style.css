@@ -215,3 +215,55 @@ body {
     width: 36.73%;
     border-radius: 3px;
 }
+
+.chart-section {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.chart-container {
+    height: 300px;
+    position: relative;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    padding: 1rem;
+    background: lightcoral;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.chart-bar {
+    width: 40px;
+    background: whitesmoke;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.chart-bar.active {
+    background: linear-gradient(to top, rgb(227, 45, 45), red);
+}
+
+.chart-bar-income {
+    background: #700000;
+    margin-bottom: 4px;
+    border-radius: 4px;
+}
+
+.chart-bar-expense {
+    background: rgb(227, 45, 45);
+    border-radius: 4px;
+}
+
+.chart-labels {
+    display :flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: #6b7280
+}
