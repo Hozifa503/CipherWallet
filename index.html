@@ -97,7 +97,8 @@
                     <div class="chart-bar" style="height: 120px;"></div>
                     <div class="chart-bar" style="height: 80px;"></div>
                     <div class="chart-bar active" style="height: 200px;">
-                        <div style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: white; padding: 0.25rem 0.5rem; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,1); font-size: 0.75rem;">
+                        <div
+                            style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: white; padding: 0.25rem 0.5rem; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,1); font-size: 0.75rem;">
                             <div style="font-weight: 600;">September 2026</div>
                             <div style="color: lightcoral;">Income: $493</div>
                             <div style="color: #ea580c;">Expenses: $345</div>
@@ -128,9 +129,81 @@
                     <span>Dec</span>
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">All Expenses</h3>
+                    <button class="card-menu"><i class="fa-solid fa-ellipsis"></i></button>
+                </div>
+
+                <div style="font-size: 0.75rem; color:#6b7280; margin-bottom: 1rem;">Spending breakdown by category
+                </div>
+
+                <div class="expenses-breakdown">
+                    <div class="total-expenses">$24,645.00</div>
+
+                    <div class="period-tabs">
+                        <span class="period-tab">Daily</span>
+                        <span class="period-tab">Weekly</span>
+                        <span class="period-tab active">Monthly</span>
+                    </div>
+
+                    <div class="period-amounts">
+                        <span>Daily</span>
+                        <span>Weekly</span>
+                        <span>Monthly</span>
+                    </div>
+
+                    <div class="period-values">
+                        <span>$1,345</span>
+                        <span>$7,136</span>
+                        <span>$14,927</span>
+                    </div>
+
+                    <div class="color-bar"></div>
+
+                    <div class="expense-categories">
+                        <ul class="expense-categories">
+                            <li class="expense-category">
+                                <div class="category-info">
+                                    <div class="category-dot dot-food"></div>
+                                    <span>Food & Health</span>
+                                </div>
+                                <span>863</span>
+                            </li>
+                            
+                            <li class="expense-category">
+                                <div class="category-info">
+                                    <div class="category-dot dot-entertainment"></div>
+                                    <span>Entertainments</span>
+                                </div>
+                                <span>248</span>
+                            </li>
+
+                            <li class="expense-category">
+                                <div class="category-info">
+                                    <div class="category-dot dot-shopping"></div>
+                                    <span>Shopping</span>
+                                </div>
+                                <span>1815</span>
+                            </li>
+
+                            <li class="expense-category">
+                                <div class="category-info">
+                                    <div class="category-dot dot-investment"></div>
+                                    <span>Investment</span>
+                                </div>
+                                <span>1815</span>
+                            </li>
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
-</body> 
+</body>
 
 </html>
