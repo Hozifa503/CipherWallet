@@ -267,3 +267,93 @@ body {
     font-size: 0.75rem;
     color: #6b7280
 }
+
+.expenses-breakdown {
+    margin-top: 1rem;
+}
+
+.total-expenses {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.period-tabs {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.period-tab {
+    color: #6b7280;
+    cursor: pointer;
+}
+
+.period-tab.active {
+    color: #700000;
+    font-weight: 600;
+}
+
+.period-amounts {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: #700000;
+}
+
+.period-values {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.color-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(to right, #700000, red, lightcoral);
+    margin-bottom: 1rem;
+}
+
+.expense-categories {
+    list-style: none;
+}
+
+.expense-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.category-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.category-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.dot-food {
+    background: #180000;
+}
+
+.dot-investment {
+    background: #a00000;
+}
+
+.dot-entertainment {
+    background: #ef4444;
+}
+
+.dot-shopping {
+    background: red;
+}
