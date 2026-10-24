@@ -452,3 +452,142 @@ body {
 .fab-expense {
     background: lightcoral;
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: #180000;
+    border-radius: 12px;
+    width: 500px;
+    max-width: 90vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: slideIn 0.3s ease;
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #ef4444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    dominant-baseline: 1.25rem;
+    font-weight: 600;
+}
+
+.close-btn {
+    background: #ef4444;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    font-size: 1.5rem;
+    color: #180000;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: transparent;
+    color: #ef4444;
+    border-color: #ef4444;
+    transform: scale(1.15);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #ef4444;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #700000;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #a00000;
+}
+
+.form-select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #700000;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #a00000;
+}
+
+.modal-footer {
+    padding: 1.5rem;
+    border-top: 2px solid #ef4444;
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #ef4444;
+    color: #180000;
+}
+
+.btn-secondary {
+    background: rgb(21, 33, 33);
+    color: #180000;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translate(-50%, -60%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
