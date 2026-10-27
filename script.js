@@ -193,3 +193,19 @@ function showNotification(message, type = 'success') {
         }, 300);
     }, 3000);
 }
+
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from {transform: translateX(100%); opacity: 0;}
+        to {transform: translateX(0); opacity: 1;}
+    }
+
+    @keyframes slideOutRight {
+        from {transform: translateX(0); opacity: 1;}
+        to {transform: translateX(100%); opacity: 1;}
+    }
+
+`
+
+document.head.appendChild(style)
