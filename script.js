@@ -138,3 +138,33 @@ function updateDashboard() {
     document.querySelector('.spending-limit').textContent = `${(spendingLimit - usedAmount).toLocaleString()}.00`
     document.querySelector('.progress-fill').style.width = `${Math.min(precentage, 100)}%`
 }
+
+function updateTransactionsTable() {
+    const tbody = document.querySelector('.transactions-table tbody')
+    tbody.innerHTML = ''
+
+    const recentTransactions = transactions.slice(0, 10)
+
+    recentTransactions.forEach((transaction) => {
+        const row = document.createElement('tr');
+        const formattedDate = new Date(transaction.date).toLocaleDateString(
+            'en-Us',
+            {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            }
+        )
+
+        const amountDisplay = transaction.amount > 0 ? `+${transaction.amount.toLocaleString()}.00` : `-${Math.abs(transaction.amount).toLocaleString()}.00`
+
+        row.innerHTML = `
+                <td>${formattedDate}</td>
+                <td>${transaction.category}</td>
+                <td style="color: ${transaction.amount > 0 ? '#10b981' : '#ef4444'}">${amountDisplay}</td>
+                <td><span class="status-success">${transaction.status}</span></td>
+                <td><button class="action-btn"><i class="fa-solid fa-ellipsis-h"></i></td>
+        `;
+        tbody.appendChild(row)
+    });
+}
