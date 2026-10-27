@@ -168,3 +168,28 @@ function updateTransactionsTable() {
         tbody.appendChild(row)
     });
 }
+
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div')
+    notification.style.cssText = `
+        position: fixed;
+        top: 2rem;
+        right: 2rem;
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1001;
+        animation: slideInRight 0.3s ease;
+        background: ${type === 'success' ? '#10b981' : '#ef4444'};
+    `
+    notification.textContent = message
+    document.body.appendChild(notification)
+
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease'
+        setTimeout(() => {
+            document.body.removeChild(notification)
+        }, 300);
+    }, 3000);
+}
