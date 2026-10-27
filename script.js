@@ -1,4 +1,4 @@
-let transaction = [
+let transactions = [
     {
         id: 1,
         date: "2026-10-20",
@@ -48,7 +48,7 @@ function closeModal(modalId) {
     if (modalId === 'incomeModal') {
         document.getElementById('incomeform').reset()
         document.getElementById('incomeDate').value = today
-    }else {
+    } else {
         document.getElementById('expenseForm').reset()
         document.getElementById('expenseDate').value = today
     }
@@ -65,4 +65,34 @@ window.onclick = function (event) {
     if (event.target === expenseModal) {
         closeModal('expenseModal')
     }
+}
+
+function addIncome() {
+    const amount = parseFloat(document.getElementById('incomeAmount').value)
+    const category = document.getElementById('incomeCategory').value
+    const description = document.getElementById('incomeDescription').value
+    const date = document.getElementById('incomeDate').value
+
+    if (!amount || !category || !date) {
+        alert('Please fill in all required fields')
+        return
+    }
+
+    const newTransaction = {
+        id: transactions.length + 1,
+        date: date,
+        category: category.charAt(0).toUpperCase() + category.slice(1),
+        amount: amount,
+        status: 'Success',
+        type: 'income',
+        description: description,
+    }
+
+    transactions.unshift(newTransaction)
+
+    updateDashboard()
+    updateTransactionsTable()
+
+    closeModal('incomeModal');
+    showNotification('Income added successfully', 'success')
 }
