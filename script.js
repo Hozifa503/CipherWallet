@@ -88,10 +88,10 @@ function addIncome() {
         description: description,
     }
 
-    transactions.unshift(newTransaction)
+    transactions.unshift(newTransaction);
 
-    updateDashboard()
-    updateTransactionsTable()
+    updateDashboard();
+    updateTransactionsTable();
 
     closeModal('incomeModal');
     showNotification('Income added successfully', 'success')
@@ -120,9 +120,21 @@ function addExpense() {
 
     transactions.unshift(newTransaction)
 
+    monthlyIncome += amount
     updateDashboard()
     updateTransactionsTable()
 
     closeModal('expenseModal');
     showNotification('Expense added successfully', 'success')
+}
+
+function updateDashboard() {
+    document.querySelector('.income-amount').textContent = `${monthlyIncome.toLocaleString()}.00`
+    document.querySelector('.expense-amount').textContent = `${monthlyExpenses.toLocaleString()}.00`
+
+    let spendingLimit = 12645
+    const usedAmount = monthlyExpenses
+    const precentage = (usedAmount / spendingLimit) * 100
+    document.querySelector('.spending-limit').textContent = `${(spendingLimit - usedAmount).toLocaleString()}.00`
+    document.querySelector('.progress-fill').style.width = `${Math.min(precentage, 100)}%`
 }
