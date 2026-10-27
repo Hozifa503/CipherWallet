@@ -46,7 +46,7 @@ function closeModal(modalId) {
     document.body.style.overflow = 'auto'
 
     if (modalId === 'incomeModal') {
-        document.getElementById('incomeform').reset()
+        document.getElementById('incomeForm').reset()
         document.getElementById('incomeDate').value = today
     } else {
         document.getElementById('expenseForm').reset()
@@ -95,4 +95,34 @@ function addIncome() {
 
     closeModal('incomeModal');
     showNotification('Income added successfully', 'success')
+}
+
+function addExpense() {
+    const amount = parseFloat(document.getElementById('expenseAmount').value)
+    const category = document.getElementById('expenseCategory').value
+    const description = document.getElementById('expenseDescription').value
+    const date = document.getElementById('expenseDate').value
+
+    if (!amount || !category || !date) {
+        alert('Please fill in all required fields')
+        return
+    }
+
+    const newTransaction = {
+        id: transactions.length + 1,
+        date: date,
+        category: category.charAt(0).toUpperCase() + category.slice(1),
+        amount: -amount,
+        status: 'Success',
+        type: 'expense',
+        description: description,
+    }
+
+    transactions.unshift(newTransaction)
+
+    updateDashboard()
+    updateTransactionsTable()
+
+    closeModal('expenseModal');
+    showNotification('Expense added successfully', 'success')
 }
