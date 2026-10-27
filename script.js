@@ -89,6 +89,7 @@ function addIncome() {
     }
 
     transactions.unshift(newTransaction);
+    monthlyIncome += amount
 
     updateDashboard();
     updateTransactionsTable();
@@ -120,7 +121,7 @@ function addExpense() {
 
     transactions.unshift(newTransaction)
 
-    monthlyIncome += amount
+    monthlyExpenses += amount
     updateDashboard()
     updateTransactionsTable()
 
@@ -209,3 +210,8 @@ style.textContent = `
 `
 
 document.head.appendChild(style)
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    updateTransactionsTable()
+})
