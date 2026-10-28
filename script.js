@@ -179,7 +179,7 @@ function updateTransactionsTable() {
                 <td>${transaction.category}</td>
                 <td style="color: ${transaction.amount > 0 ? '#10b981' : '#ef4444'}">${amountDisplay}</td>
                 <td><span class="status-success">${transaction.status}</span></td>
-                <td><button class="action-btn"><i class="fa-solid fa-ellipsis-h"></i></td>
+                <td><button class="action-btn" onclick="deleteTransaction(${transaction.id})" title="Delete"><i class="fa-solid fa-ellipsis-h"></i></td>
         `;
         tbody.appendChild(row)
     });
@@ -243,6 +243,26 @@ function toggleSort() {
         showNotification('Sorted by: Newest Date', 'success');
     }
     updateTransactionsTable();
+}
+
+function deleteTransaction(id) {
+    const index = transactions.findIndex(t => t.id === id);
+    if (index !== -1) {
+        const deleted = transactions[index];
+
+        if (deleted.type === 'income') {
+            monthlyIncome -= deleted.amount;
+        } else if (deleted.type === 'expense') {
+            monthlyExpenses -= Math.abs(deleted.amount);
+        }
+
+        transactions.splice(index, 1);
+
+        updateDashboard();
+        updateTransactionsTable();
+
+        showNotification('Transaction deleted successfully', 'error');
+    }
 }
 
 const style = document.createElement('style');
