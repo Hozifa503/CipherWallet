@@ -26,6 +26,8 @@ let transactions = [
 
 let monthlyIncome = 2645;
 let monthlyExpenses = 1895;
+let currentFilter = 'all';
+let currentSort = 'date-desc'
 
 const today = new Date().toISOString().split('T')[0]
 document.getElementById('incomeDate').value = today
@@ -144,7 +146,20 @@ function updateTransactionsTable() {
     const tbody = document.querySelector('.transactions-table tbody')
     tbody.innerHTML = ''
 
-    const recentTransactions = transactions.slice(0, 10)
+    let filteredTransactions = transactions.filter(transaction => {
+        if (currentFilter === 'income') return transaction.amount > 0;
+        if (currentFilter === 'expense') return transaction.amount < 0;
+        return true;
+    });
+
+    filteredTransactions.sort((a, b) => {
+        if (currentSort === 'date-desc') return new Date(b.date) - new Date(a.date);
+        if (currentSort === 'date-asc') return new Date(a.date) - new Date(b.date);
+        if (currentSort === 'amount-desc') return Math.abs(b.amount) - Math.abs(a.amount);
+        if (currentSort === 'amount-asc') return Math.abs(a.amount) - Math.abs(b.amount);
+    })
+
+    const recentTransactions = filteredTransactions.slice(0, 10)
 
     recentTransactions.forEach((transaction) => {
         const row = document.createElement('tr');
@@ -193,6 +208,41 @@ function showNotification(message, type = 'success') {
             document.body.removeChild(notification)
         }, 300);
     }, 3000);
+}
+
+function setFilter(filterType) {
+    currentFilter = filterType;
+    updateTransactionsTable();
+}
+
+function setSort(sortType) {
+    currentSort = sortType;
+    updateTransactionsTable();
+}
+
+function toggleFilter() {
+    if (currentFilter === 'all') {
+        currentFilter = 'income';
+        showNotification('Filtered by: Income', 'success');
+    } else if (currentFilter === 'income') {
+        currentFilter = 'expense';
+        showNotification('Filterd by: Expenses', 'success');
+    } else {
+        currentFilter = 'all';
+        showNotification('Showing: All Transactions', 'success');
+    }
+    updateTransactionsTable();
+}
+
+function toggleSort() {
+    if (currentSort === 'date-desc') {
+        currentSort = 'amount-desc';
+        showNotification('Sorted by: Highest Amount', 'success');
+    } else {
+        currentSort = 'date-desc';
+        showNotification('Sorted by: Newest Date', 'success');
+    }
+    updateTransactionsTable();
 }
 
 const style = document.createElement('style');
