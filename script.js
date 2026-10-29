@@ -28,6 +28,7 @@ let monthlyIncome = 2645;
 let monthlyExpenses = 1895;
 let currentFilter = 'all';
 let currentSort = 'date-desc'
+let headerPeriod = 'Daily';
 
 const today = new Date().toISOString().split('T')[0]
 document.getElementById('incomeDate').value = today
@@ -264,6 +265,44 @@ function deleteTransaction(id) {
         showNotification('Transaction deleted successfully', 'error');
     }
 }
+
+function togglePeriodDropdown() {
+    if (headerPeriod === 'Daily') {
+        headerPeriod = 'Weekly';
+    } else if (headerPeriod === 'Weekly') {
+        headerPeriod = 'Monthly';
+    } else {
+        headerPeriod = 'Daily';
+    }
+
+    document.getElementById('currentPeriodText').textContent = headerPeriod;
+    showNotification(`View Changed to: ${headerPeriod}`, 'success');
+}
+
+function exportTransactions() {
+    if (transactions.length === 0) {
+        showNotification('No transactions to export!', 'error');
+        return;
+    }
+
+    let csvContent = "data:text/csv;charset=utf-8,ID,Date,Category,Amount,Status,Type\n";
+
+    transactions.forEach( t => {
+        csvContent += `${t.id},${t.date},${t.category},${t.amount},${t.status},${t.type}\n`
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("download", "cipher_wallet_transactions.csv");
+    link.setAttribute("href", encodedUri);
+    document.body.appendChild(link);
+
+    link.click();
+    document.body.removeChild(link);
+
+    showNotification('Transactions exported successfully!', 'success');
+}
+
 
 const style = document.createElement('style');
 style.textContent = `
