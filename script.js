@@ -303,6 +303,46 @@ function exportTransactions() {
     showNotification('Transactions exported successfully!', 'success');
 }
 
+const expenseData = {
+    daily: {
+        total: '$1,345.00',
+        values: ['$350', '$420', '$315', '260'],
+        category: [86, 24, 180, 180]
+    },
+    weekly: {
+        total: '$7,135.00',
+        values: ['$1,500', '$2,100', '1,800', '$1,736'],
+        categories: [300, 120, 900,900]
+    },
+    monthly: {
+        total: '7,136.00',
+        values: ['$1,345', '$7,136', '$14,927'],
+        categories: [863, 248, 1815, 1815]
+    }
+};
+
+function switchExpensePeriod(period, element) {
+
+    const tabs = document.querySelectorAll('.period-tab');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    element.classList.add('active');
+
+    const totalElement = document.querySelector('.total-expenses');
+    if (totalElement && expenseData[period]) {
+        totalElement.textContent = expenseData[period].total;
+    }
+
+    const valueElements = document.querySelectorAll('.period-values span')
+    if (valueElements.length > 0 && expenseData[period]) {
+        const vals = expenseData[period].values;
+        valueElements.forEach((el, index) => {
+            if (vals[index]) el.textContent = vals[index];
+        });
+    }
+
+    showNotification(`Switched expense view to :  ${period}`, 'success');
+}
+
 
 const style = document.createElement('style');
 style.textContent = `
