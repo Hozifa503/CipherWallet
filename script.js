@@ -453,7 +453,7 @@ function updateCategoryExpenses() {
     // تجميع المبالغ من المعاملات
     transactions.forEach(t => {
         if (t.type === 'expense') {
-            let cat = (t.category || '').toLowerCase().trim();
+            let cat = (t.category || '').toLowerCase().trim();ش
             for (let key in categoryTotals) {
                 if (cat.includes(key)) {
                     categoryTotals[key] += Math.abs(t.amount);
