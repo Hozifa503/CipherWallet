@@ -432,6 +432,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+const categoriesData = expenseData[period].categories || expenseData[period].category;
+const categoryElements = document.querySelectorAll('.category-amount, .expense-item-value');
+if (categoryElements.length > 0 && categoriesData) {
+    categoryElements.forEach((el,index) => {
+        if (categoriesData[index] !== undefined) {
+            el.textContent = categoriesData[index];
+        }
+    });
+    showNotification(`Switched Expense View to : ${period}`, 'success');
+}
+
+
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideInRight {
