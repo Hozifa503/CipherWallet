@@ -29,6 +29,7 @@ let monthlyExpenses = 1895;
 let currentFilter = 'all';
 let currentSort = 'date-desc'
 let headerPeriod = 'Daily';
+let overviewFilterState = 'all';
 
 const today = new Date().toISOString().split('T')[0]
 document.getElementById('incomeDate').value = today
@@ -343,6 +344,82 @@ function switchExpensePeriod(period, element) {
     showNotification(`Switched expense view to :  ${period}`, 'success');
 }
 
+function toggleOverviewFilterMenu() {
+    const menu = document.getElementById('overviewFilterMenu');
+    if (menu) {
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+}
+
+function setOverviewFilter(filterType) {
+    overviewFilterState = filterType;
+    document.getElementById('overviewFilterLabel').textContent = filterType.charAt(0).toUpperCase() + filterType.slice(1);
+    document.getElementById('overviewFilterMenu').style.display = 'none';
+
+    const bars = document.querySelectorAll('.chart-bar');
+    bars.forEach(bar => {
+        const expensePart = bar.querySelector('.chart-bar-expense');
+        const incomePart = bar.querySelector('.chart-bar-income');
+
+        if (filterType === 'income') {
+            if (incomePart) incomePart.style.display = 'block';
+            if (expensePart) expensePart.style.display = 'none';
+        } else if (filterType === 'expense') {
+            if (incomePart) incomePart.style.display = 'none';
+            if (expensePart) expensePart.style.display = 'block';
+        } else {
+            if (incomePart) incomePart.style.display = 'block';
+            if (expensePart) expensePart.style.display = 'block';
+        }
+        
+    });
+
+    showNotification(`Overview filter set to: ${filterType}`, 'success');    
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const chartBars = document.querySelectorAll('.chart-bar');
+
+    chartBars.forEach(bar => {
+        bar.addEventListener('mouseenter', function(){
+            const month = this.getAttribute('data-month');
+            const income = this.getAttribute('data-income');
+            const expense = this.getAttribute('data-expense');
+
+            let tooltip = this.querySelector('.custom-tooltip');
+            if (!tooltip) {
+                tooltip = document.createElement('div');
+                tooltip.className = 'custom-tooltip';
+                tooltip.style.cssText = `
+                    position: absolute;
+                    top: -65px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: white;
+                    padding: 4px 8px;
+                    box-shadow: 0 2px 8px rgba(0, 0,0 ,0.2);
+                    font-size: 0.7rem;
+                    z-index: 20;
+                    text-align: left;
+                    white-space: nowrap;
+                    border: 1px solid #ddd;
+                    color: black;
+                    `;
+                this.style.position = 'relative';
+                this.appendChild(tooltip);
+            }
+
+            let htmlContent = `<div style="font-weight: bold;">${month} 2026</div>`;
+            if (overviewFilterState === 'all' || overviewFilterState === 'income') {
+                htmlContent += `<div style= "color: lightcoral;">Income: ${income}</div>`;
+            }
+            if (overviewFilterState === 'all' || overviewFilterState === 'expense') {
+                htmlContent += `<div style= "color: #ea580c;">Expense: ${expense}</div>`;
+            }
+            tooltip.innerHTML = htmlContent;
+        });
+    });
+});
 
 const style = document.createElement('style');
 style.textContent = `

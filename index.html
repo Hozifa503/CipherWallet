@@ -85,35 +85,33 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Overview</h3>
-                    <div style="display: flex; gap: 1rem;">
-                        <div class="dropdown">Yearly <i class="fa-solid fa-chevron-down"></i></div>
-                        <button class="filter-btn">
+                    <div style="display: flex; gap: 1rem; position: relative;">
+
+                        <div class="filter-dropdown-container">
+                            <button class="filter-btn" onclick="toggleOverviewFilterMenu()">
                             <i class="fa-solid fa-filter"></i>
-                            Filter
-                        </button>
+                            Filter: <span id="overviewFilterLabel">All</span>
+                            </button>
+                            <div id="overviewFilterMenu" class="dropdown-menu" style="display: none; position: absolute; right: 0; top: 100%; background: white; border: 1px solid #e5e7eb; border-radius: 6px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);z-index: 10; width: 130px; margin-top: 5px;">
+                                <div onclick="setOverviewFilter('all')" style="padding: 8px 12px; cursor: pointer; font-size: 0.85rem;">All</div>
+                                <div onclick="setOverviewFilter('income')" style="padding: 8px 12px; cursor: pointer; font-size: 0.85rem;">income</div>
+                                <div onclick="setOverviewFilter('expense')" style="padding: 8px 12px; cursor: pointer; font-size: 0.85rem;">expense</div>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
                 <div class="chart-container">
-                    <div class="chart-bar" style="height: 120px;"></div>
-                    <div class="chart-bar" style="height: 80px;"></div>
-                    <div class="chart-bar active" style="height: 200px;">
-                        <div
-                            style="position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background: white; padding: 0.25rem 0.5rem; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,1); font-size: 0.75rem;">
-                            <div style="font-weight: 600;">September 2026</div>
-                            <div style="color: lightcoral;">Income: $493</div>
-                            <div style="color: #ea580c;">Expenses: $345</div>
-                        </div>
-                        <div class="chart-bar-income" style="height: 120px;"></div>
-                        <div class="chart-bar-expense" style="height: 80px;"></div>
-                    </div>
-                    <div class="chart-bar" style="height: 150px;"></div>
-                    <div class="chart-bar" style="height: 90px;"></div>
-                    <div class="chart-bar" style="height: 110px;"></div>
-                    <div class="chart-bar" style="height: 130px;"></div>
-                    <div class="chart-bar" style="height: 100px;"></div>
-                    <div class="chart-bar" style="height: 80px;"></div>
-                    <div class="chart-bar" style="height: 140px;"></div>
-                    <div class="chart-bar" style="height: 95px;"></div>
+                    <div class="chart-bar" style="height: 120px;" data-month="Feb" data-income="$320" data-expense="$200"></div>
+                    <div class="chart-bar" style="height: 80px;" data-month="Mar" data-income="$250" data-expense="$150"></div>
+                    <div class="chart-bar" style="height: 200px;" data-month="Apr" data-income="$493" data-expense="$345"></div>
+                    <div class="chart-bar" style="height: 150px;" data-month="May" data-income="$400" data-expense="$280"></div>
+                    <div class="chart-bar" style="height: 90px;" data-month="Jun" data-income="$210" data-expense="$130"></div>
+                    <div class="chart-bar" style="height: 110px;" data-month="Jul" data-income="$300" data-expense="$190"></div>
+                    <div class="chart-bar" style="height: 130px;" data-month="Aug" data-income="$380" data-expense="$240"></div>
+                    <div class="chart-bar active" style="height: 170px;" data-month="Sep" data-income="$450" data-expense="$310"></div>
+                    <div class="chart-bar" style="height: 100px;" data-month="Oct" data-income="$280" data-expense="$180"></div>
+                    <div class="chart-bar" style="height: 140px;" data-month="Nov" data-income="$410" data-expense="$290"></div>
+                    <div class="chart-bar" style="height: 95px;" data-month="Dec" data-income="$230" data-expense="$140"></div>
                 </div>
                 <div class="chart-labels">
                     <span>Feb</span>
