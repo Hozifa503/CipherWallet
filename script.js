@@ -341,6 +341,17 @@ function switchExpensePeriod(period, element) {
         });
     }
 
+    const categoriesData = expenseData[period].categories || expenseData[period].category;
+    const categoryElements = document.querySelectorAll('.category-amount, .expense-item-value');
+    if (categoryElements.length > 0 && categoriesData) {
+        categoryElements.forEach((el, index) => {
+            if (categoriesData[index] !== undefined) {
+                el.textContent = categoriesData[index];
+            }
+        });
+        showNotification(`Switched Expense view to : ${period}`, 'success');
+    }
+
     showNotification(`Switched expense view to :  ${period}`, 'success');
 }
 
