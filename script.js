@@ -128,6 +128,7 @@ function addExpense() {
     monthlyExpenses += amount
     updateDashboard()
     updateTransactionsTable()
+    updateCategoryExpenses();
 
     closeModal('expenseModal');
     showNotification('Expense added successfully', 'success')
@@ -262,6 +263,7 @@ function deleteTransaction(id) {
 
         updateDashboard();
         updateTransactionsTable();
+        updateCategoryExpenses();
 
         showNotification('Transaction deleted successfully', 'error');
     }
@@ -432,15 +434,56 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-const categoriesData = expenseData[period].categories || expenseData[period].category;
-const categoryElements = document.querySelectorAll('.category-amount, .expense-item-value');
-if (categoryElements.length > 0 && categoriesData) {
-    categoryElements.forEach((el,index) => {
-        if (categoriesData[index] !== undefined) {
-            el.textContent = categoriesData[index];
+
+
+// AI used to make this section and it copied and pasted so don't delete hours
+function updateCategoryExpenses() {
+    console.log("الدالة اشتغلت يا معلم!");
+    let categoryTotals = {
+        'food': 0,
+        'entertainment': 0,
+        'shopping': 0,
+        'investment': 0,
+        'subscription': 0,
+        'transport': 0,
+        'utilities': 0,
+        'other': 0
+    };
+
+    // تجميع المبالغ من المعاملات
+    transactions.forEach(t => {
+        if (t.type === 'expense') {
+            let cat = (t.category || '').toLowerCase().trim();
+            for (let key in categoryTotals) {
+                if (cat.includes(key)) {
+                    categoryTotals[key] += Math.abs(t.amount);
+                }
+            }
         }
     });
-    showNotification(`Switched Expense View to : ${period}`, 'success');
+
+    // تحديث الأرقام في عناصر الـ HTML بناءً على محتوى النص
+    const categoryItems = document.querySelectorAll('.expense-category');
+    categoryItems.forEach(item => {
+        const textSpan = item.querySelector('.category-info span');
+        const amountSpan = item.querySelector('.category-amount');
+
+        if (textSpan && amountSpan) {
+            let categoryText = textSpan.textContent.toLowerCase();
+            
+            if (categoryText.includes('food')) {
+                amountSpan.textContent = categoryTotals['food'];
+            } else if (categoryText.includes('entertain')) { // بتجيب entertainment أو entertainments
+                amountSpan.textContent = categoryTotals['entertainment'];
+            } else if (categoryText.includes('shopping')) {
+                amountSpan.textContent = categoryTotals['shopping'];
+            } else if (categoryText.includes('investment')) {
+                amountSpan.textContent = categoryTotals['investment'];
+            } else if (categoryText.includes('subscription')) {
+                amountSpan.textContent = categoryTotals['subscription'];
+            }
+        }
+    });
 }
 
 
@@ -462,5 +505,6 @@ document.head.appendChild(style)
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    updateTransactionsTable()
+    updateTransactionsTable();
+    updateCategoryExpenses();
 })
